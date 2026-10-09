@@ -57,6 +57,30 @@ app.get('/messages/:messageId', async (req, res) => {
     })
   }
 })
+
+// route to about me page
+app.get('/about-me', async(req,res) => {
+  // load paragraphs from json data
+  try{
+    const aboutMe = {
+      title: "About Me",
+      image: "https://i.imgur.com/8LgeWn1.jpeg",
+      info: [
+        "Hello! My name is Kenny Buchanan. I'm 21 and a senior majoring in Computer Science. I'm from the suburbs of Denver, CO, but I was born in LA. Naturally, I love skiing, hiking, and nature of all kinds. I also devote a lot of my time to the arts; I love seeing movies, plays, and exhibitions whenever I can.",
+        "My professional interests focus on human-computer interaction and UI/UX development. I love working directly with users, talking to them and understand their needs. While studying in South Korea, I got to take many user-based design classes which spurred my interest in the field. I have an interest in physical computing, and in the future, I want to work on helping to develop new accessible technologies and find new ways to make everyday life easier and more enjoyable."
+      ]
+    }
+    res.json(aboutMe)
+  }
+  catch (err) {
+    console.error(err)
+    return res.status(400).json({
+      error: err,
+      status: 'failed to load "About Me"',
+  })
+}
+})
+
 // a route to handle logging out users
 app.post('/messages/save', async (req, res) => {
   // try to save the message to the database
