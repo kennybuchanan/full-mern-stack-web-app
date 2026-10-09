@@ -27,6 +27,9 @@ export default defineConfig(({ mode }) => {
     server: {
       open: true,
       port: env.PORT ? Number(env.PORT) : 7002,
+      proxy: {
+        '/about-me': 'http://localhost:5002',
+      }
     },
   }
 })
